@@ -13,14 +13,20 @@ service StartGame {
 
 // StartGameReq 客户端：选择大区开始游戏请求信息
 message StartGameReq {
-  uint32 regionID = 1;      // 大区ID
-  int32  deviceID = 2;      // 设备ID
-  string deviceName = 3;    // 设备名称
-  int32  deviceType = 4;    // 设备类型
+  uint32 regionID = 1;                      // 大区ID
+  ClientDriverInfo clientDriver = 2;        // 客户端信息
 }
 
 // StartGameResp 服务端：选择大区开始游戏响应信息
 message StartGameResp {
   int32  code = 1;          // 开始游戏响应码：例如：具体参考 http://doc.dreamlandAdventure.com
   string message = 2;       // 开始游戏响信息：例如：具体参考 http://doc.dreamlandAdventure.com
+}
+
+// ClientDriverInfo 客户端信息
+message ClientDriverInfo {
+  int32  version = 1;       // 客户端版本号
+  int32  deviceID = 2;      // 设备ID
+  string deviceName = 3;    // 设备名称
+  int32  deviceType = 4;    // 设备类型
 }
