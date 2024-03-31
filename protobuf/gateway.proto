@@ -1,0 +1,26 @@
+syntax = "proto3";
+
+// 指定包名
+package pb;
+
+// 输出配置设置
+option go_package="./;protobuf";
+
+// StartGame 初始选择大区开始游戏服务
+service StartGame {
+  rpc SendStatus(stream StartGameReq) returns (StartGameResp);
+}
+
+// StartGameReq 客户端：选择大区开始游戏请求信息
+message StartGameReq {
+  uint32 regionID = 1;      // 大区ID
+  int32  deviceID = 2;      // 设备ID
+  string deviceName = 3;    // 设备名称
+  int32  deviceType = 4;    // 设备类型
+}
+
+// StartGameResp 服务端：选择大区开始游戏响应信息
+message StartGameResp {
+  int32  code = 1;          // 开始游戏响应码：例如：具体参考 http://doc.dreamlandAdventure.com
+  string message = 2;       // 开始游戏响信息：例如：具体参考 http://doc.dreamlandAdventure.com
+}
